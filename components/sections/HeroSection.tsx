@@ -64,7 +64,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.7 }}
-          className="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-6"
+          className="flex items-center gap-2.5 sm:gap-3 mb-2.5 sm:mb-6"
         >
           <div className="w-5 sm:w-8 h-px bg-[#C8A97E]" />
           <span className="text-[11px] sm:text-xs tracking-widest uppercase text-[#C8A97E] font-medium">
@@ -78,7 +78,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="font-display text-[1.75rem] xs:text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white leading-[1.15] sm:leading-tight mb-2.5 sm:mb-6 tracking-normal"
+            className="font-display text-[1.375rem] xs:text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-white leading-[1.25] sm:leading-tight mb-3.5 sm:mb-6 tracking-normal"
           >
             Thiết kế không gian
             <br />
@@ -91,7 +91,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="text-xs sm:text-base md:text-lg text-white/75 leading-relaxed mb-5 sm:mb-10 max-w-xl tracking-normal line-clamp-3 sm:line-clamp-none"
+            className="text-[13px] sm:text-base md:text-lg text-white/80 leading-[1.6] sm:leading-relaxed mb-6 sm:mb-10 max-w-xl tracking-normal line-clamp-3 sm:line-clamp-none"
           >
             Biến ý tưởng thành không gian sống hoàn hảo. Chúng tôi tạo ra những
             tổ ấm phản ánh cá tính và lối sống của từng gia chủ.
@@ -101,7 +101,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 0.7 }}
-            className="flex flex-col sm:flex-row gap-2.5 sm:gap-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4"
           >
             <Link
               href="#contact"
