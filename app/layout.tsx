@@ -33,10 +33,10 @@ export const metadata: Metadata = {
       "Biến ý tưởng thành không gian sống hoàn hảo. Thiết kế nội thất cao cấp cho căn hộ, biệt thự tại Việt Nam.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=630&fit=crop&q=90",
         width: 1200,
         height: 630,
-        alt: "Elite Interior Studio",
+        alt: "Elite Interior Studio — Thiết Kế Nội Thất Cao Cấp",
       },
     ],
   },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "Elite Interior Studio | Thiết Kế Nội Thất Cao Cấp",
     description:
       "Biến ý tưởng thành không gian sống hoàn hảo. Thiết kế nội thất cao cấp cho căn hộ, biệt thự tại Việt Nam.",
-    images: ["/og-image.jpg"],
+    images: ["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=630&fit=crop&q=90"],
   },
   robots: {
     index: true,
@@ -63,6 +63,49 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "HomeAndConstructionBusiness",
+      "@id": "https://eliteinterior.vn/#business",
+      "name": "Elite Interior Studio",
+      "url": "https://eliteinterior.vn",
+      "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=630&fit=crop&q=90",
+      "description":
+        "Elite Interior Studio chuyên thiết kế và thi công nội thất cao cấp cho căn hộ, biệt thự và không gian thương mại tại TP. Hồ Chí Minh và Hà Nội.",
+      "telephone": "+84901234567",
+      "email": "hello@eliteinterior.vn",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "12 Nguyễn Đình Chiểu, Quận 1",
+        "addressLocality": "TP. Hồ Chí Minh",
+        "addressCountry": "VN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 10.7852,
+        "longitude": 106.6988
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      },
+      "priceRange": "$$$$"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://eliteinterior.vn/#website",
+      "url": "https://eliteinterior.vn",
+      "name": "Elite Interior Studio",
+      "publisher": { "@id": "https://eliteinterior.vn/#business" },
+      "inLanguage": "vi-VN"
+    }
+  ]
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -77,9 +120,13 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap"
           rel="stylesheet"
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body
-        className="antialiased"
+        className="antialiased overflow-x-hidden"
         style={{ backgroundColor: "#F8F5F0", color: "#2F2F2F" }}
       >
         <Header />

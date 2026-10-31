@@ -54,15 +54,29 @@ export function FeaturedProjects() {
             ))}
           </div>
         </div>
+
+        {/* Mobile View All CTA */}
+        <div className="mt-8 flex md:hidden justify-center">
+          <Link
+            href="#gallery"
+            className="inline-flex items-center gap-2 text-sm font-medium tracking-normal text-[#C8A97E] hover:gap-3 transition-all"
+          >
+            Xem tất cả dự án <ArrowUpRight size={16} />
+          </Link>
+        </div>
       </div>
     </section>
   );
 }
 
 function ProjectCard({ project, size }: { project: (typeof projects)[0]; size: "large" | "small" }) {
-  const h = size === "large" ? "aspect-[4/3] md:aspect-square lg:aspect-[4/3]" : "aspect-[16/9]";
+  const h = size === "large" ? "aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3]" : "aspect-[16/10] sm:aspect-[16/9]";
   return (
-    <div className={`relative ${h} overflow-hidden group`}>
+    <Link
+      href="#gallery"
+      className={`relative ${h} overflow-hidden group block cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A97E]`}
+      aria-label={`Xem dự án ${project.title}`}
+    >
       <Image
         src={project.image}
         alt={project.title}
@@ -71,24 +85,24 @@ function ProjectCard({ project, size }: { project: (typeof projects)[0]; size: "
         sizes="(max-width: 1024px) 100vw, 50vw"
       />
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
 
       {/* Content */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-        <div className="flex items-center gap-2 mb-2">
+      <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 md:p-8 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-transform duration-500">
+        <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
           <span className="text-xs tracking-normal font-medium text-[#C8A97E]">{project.category}</span>
           <span className="text-white/40 text-xs">•</span>
           <span className="text-xs text-white/50">{project.area}</span>
         </div>
-        <h3 className="font-display text-xl md:text-2xl font-light text-white mb-2 tracking-normal">{project.title}</h3>
-        <p className="text-sm text-white/60 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 max-w-md tracking-normal">
+        <h3 className="font-display text-lg sm:text-xl md:text-2xl font-light text-white mb-1.5 sm:mb-2 tracking-normal">{project.title}</h3>
+        <p className="text-xs sm:text-sm text-white/70 leading-relaxed max-w-md tracking-normal line-clamp-2 md:line-clamp-none md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
           {project.description}
         </p>
-        <div className="flex items-center gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        <div className="flex items-center gap-2 mt-3 sm:mt-4 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
           <span className="text-xs font-medium tracking-normal text-[#C8A97E]">Xem chi tiết</span>
           <ArrowUpRight size={14} className="text-[#C8A97E]" />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

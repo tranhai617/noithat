@@ -20,6 +20,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -33,6 +34,12 @@ body {
   font-synthesis: none;
   letter-spacing: normal;
   word-spacing: normal;
+  overflow-x: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid #C8A97E;
+  outline-offset: 2px;
 }
 
 /* ── Custom scrollbar ──────────────────────────────── */
@@ -77,8 +84,15 @@ body {
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-elite {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -96,11 +110,18 @@ body {
 }
 
 .section-padding {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 @media (min-width: 768px) {
+  .section-padding {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
   .section-padding {
     padding-top: 8rem;
     padding-bottom: 8rem;

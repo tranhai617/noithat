@@ -25,7 +25,16 @@ export function Header() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    if (menuOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [menuOpen]);
 
   return (
@@ -37,51 +46,63 @@ export function Header() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
             ? "bg-[#F8F5F0]/95 backdrop-blur-md shadow-sm border-b border-[#E8E0D5]"
-            : "bg-transparent"
+            : "bg-black/20 backdrop-blur-[2px]"
         }`}
       >
-        <div className="container-elite flex items-center justify-between h-18 py-4">
+        <div className="container-elite flex items-center justify-between h-16 md:h-18 py-3 md:py-4">
           {/* Logo — Latin-only, tracking is safe here */}
           <Link href="/" className="flex flex-col leading-none group">
-            <span className="text-sm font-light tracking-[0.25em] uppercase text-[#C8A97E] transition-opacity group-hover:opacity-70">
+            <span className="text-xs sm:text-sm font-light tracking-[0.25em] uppercase text-[#C8A97E] transition-opacity group-hover:opacity-70">
               Elite
             </span>
-            <span className="text-lg font-semibold tracking-[0.12em] uppercase text-[#2F2F2F]">
+            <span
+              className={`text-base sm:text-lg font-semibold tracking-[0.12em] uppercase transition-colors duration-300 ${
+                scrolled ? "text-[#2F2F2F]" : "text-white"
+              }`}
+            >
               Interior Studio
             </span>
           </Link>
 
           {/* Desktop Nav — Vietnamese text: NO letter-spacing */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm tracking-normal text-[#2F2F2F]/70 hover:text-[#C8A97E] transition-colors duration-300"
+                className={`text-sm tracking-normal transition-colors duration-300 ${
+                  scrolled
+                    ? "text-[#2F2F2F]/75 hover:text-[#C8A97E]"
+                    : "text-white/85 hover:text-white"
+                }`}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          {/* CTA — Vietnamese text: NO letter-spacing */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* Actions & Mobile menu */}
+          <div className="flex items-center gap-3 sm:gap-4">
+            {/* CTA — Shown on tablet & desktop */}
             <Link
               href="#contact"
-              className="px-6 py-2.5 text-sm tracking-normal bg-[#C8A97E] text-white hover:bg-[#B8946A] transition-colors duration-300"
+              className="hidden sm:inline-flex px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm tracking-normal bg-[#C8A97E] text-white hover:bg-[#B8946A] transition-colors duration-300 shadow-sm"
             >
               Tư vấn ngay
             </Link>
-          </div>
 
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 text-[#2F2F2F]"
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+            {/* Mobile/Tablet menu button */}
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className={`lg:hidden p-2 transition-colors duration-300 ${
+                scrolled || menuOpen ? "text-[#2F2F2F]" : "text-white"
+              }`}
+              aria-label={menuOpen ? "Đóng menu điều hướng" : "Mở menu điều hướng"}
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
       </motion.header>
 

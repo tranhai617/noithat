@@ -33,11 +33,11 @@ export function AnimatedCounter({ value, suffix, label }: AnimatedCounterProps) 
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="text-5xl md:text-6xl font-light text-[#C8A97E] mb-2 font-display tracking-normal"
+        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-[#C8A97E] mb-1 sm:mb-2 font-display tracking-normal"
       >
         {display}{suffix}
       </motion.div>
-      <p className="text-sm tracking-normal font-medium text-[#2F2F2F]/60">{label}</p>
+      <p className="text-xs sm:text-sm tracking-normal font-medium text-[#2F2F2F]/60">{label}</p>
     </div>
   );
 }

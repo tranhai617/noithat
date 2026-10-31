@@ -24,20 +24,20 @@ export function SectionHeading({ tag, title, subtitle, center = false, light = f
       className={center ? "text-center" : ""}
     >
       {tag && (
-        <span className={`block text-xs font-semibold tracking-normal uppercase mb-4 ${light ? "text-[#C8A97E]" : "text-[#C8A97E]"}`}>
+        <span className={`block text-xs font-semibold tracking-normal uppercase mb-2.5 sm:mb-4 ${light ? "text-[#C8A97E]" : "text-[#C8A97E]"}`}>
           {tag}
         </span>
       )}
       <h2
-        className={`font-display text-3xl md:text-4xl lg:text-5xl font-normal leading-tight tracking-normal mb-4 ${
+        className={`font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal leading-tight tracking-normal mb-3 sm:mb-4 ${
           light ? "text-white" : "text-[#2F2F2F]"
         }`}
       >
         {title}
       </h2>
-      <div className={`line-accent mb-6 ${center ? "mx-auto" : ""}`} />
+      <div className={`line-accent mb-4 sm:mb-6 ${center ? "mx-auto" : ""}`} />
       {subtitle && (
-        <p className={`text-base md:text-lg leading-relaxed tracking-normal max-w-2xl ${light ? "text-white/60" : "text-[#2F2F2F]/60"} ${center ? "mx-auto" : ""}`}>
+        <p className={`text-sm sm:text-base md:text-lg leading-relaxed tracking-normal max-w-2xl ${light ? "text-white/60" : "text-[#2F2F2F]/60"} ${center ? "mx-auto" : ""}`}>
           {subtitle}
         </p>
       )}

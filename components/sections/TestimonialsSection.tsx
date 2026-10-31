@@ -30,7 +30,10 @@ export function TestimonialsSection() {
         {/* Large quote */}
         <div ref={ref} className="mt-16 relative">
           {/* Decorative quote mark */}
-          <div className="absolute -top-8 left-0 text-8xl font-serif text-[#C8A97E]/20 leading-none select-none">
+          <div
+            className="absolute -top-8 left-0 text-8xl font-serif text-[#C8A97E]/20 leading-none select-none pointer-events-none hidden sm:block"
+            aria-hidden="true"
+          >
             "
           </div>
 
@@ -44,19 +47,19 @@ export function TestimonialsSection() {
               className="max-w-3xl mx-auto text-center px-4"
             >
               {/* Stars */}
-              <div className="flex justify-center gap-1 mb-8">
+              <div className="flex justify-center gap-1 mb-6 sm:mb-8">
                 {Array.from({ length: t.rating }).map((_, i) => (
                   <Star key={i} size={16} className="fill-[#C8A97E] text-[#C8A97E]" />
                 ))}
               </div>
 
-              <p className="font-display text-xl md:text-2xl lg:text-3xl font-light text-white/90 leading-relaxed mb-10 tracking-normal">
+              <p className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-white/90 leading-relaxed mb-8 sm:mb-10 tracking-normal">
                 {t.content}
               </p>
 
               {/* Author */}
-              <div className="flex flex-col items-center gap-3">
-                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#C8A97E]/50">
+              <div className="flex flex-col items-center gap-2 sm:gap-3">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-[#C8A97E]/50">
                   <Image
                     src={t.avatar}
                     alt={t.name}
@@ -66,30 +69,36 @@ export function TestimonialsSection() {
                   />
                 </div>
                 <div>
-                  <div className="text-white font-medium tracking-normal">{t.name}</div>
-                  <div className="text-white/40 text-sm tracking-normal">{t.role}</div>
-                  <div className="text-[#C8A97E] text-xs font-medium tracking-normal mt-1">{t.project}</div>
+                  <div className="text-white text-sm sm:text-base font-medium tracking-normal">{t.name}</div>
+                  <div className="text-white/40 text-xs sm:text-sm tracking-normal">{t.role}</div>
+                  <div className="text-[#C8A97E] text-xs font-medium tracking-normal mt-0.5 sm:mt-1">{t.project}</div>
                 </div>
               </div>
             </motion.div>
           </AnimatePresence>
 
           {/* Controls */}
-          <div className="flex items-center justify-center gap-8 mt-12">
+          <div className="flex items-center justify-center gap-6 sm:gap-8 mt-8 sm:mt-12">
             <button
+              type="button"
               onClick={prev}
-              className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/50 hover:border-[#C8A97E] hover:text-[#C8A97E] transition-colors"
+              aria-label="Xem đánh giá trước đó"
+              className="w-9 h-9 sm:w-10 sm:h-10 border border-white/20 flex items-center justify-center text-white/50 hover:border-[#C8A97E] hover:text-[#C8A97E] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A97E]"
             >
               <ChevronLeft size={18} />
             </button>
 
             {/* Dots */}
-            <div className="flex gap-2">
-              {testimonials.map((_, i) => (
+            <div className="flex gap-2" role="tablist" aria-label="Chọn khách hàng đánh giá">
+              {testimonials.map((testi, i) => (
                 <button
                   key={i}
+                  type="button"
                   onClick={() => setCurrent(i)}
-                  className={`transition-all duration-300 ${
+                  aria-label={`Xem đánh giá của ${testi.name}`}
+                  aria-selected={i === current}
+                  role="tab"
+                  className={`transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A97E] ${
                     i === current ? "w-6 h-1.5 bg-[#C8A97E]" : "w-1.5 h-1.5 bg-white/30 hover:bg-white/50"
                   }`}
                 />
@@ -97,8 +106,10 @@ export function TestimonialsSection() {
             </div>
 
             <button
+              type="button"
               onClick={next}
-              className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/50 hover:border-[#C8A97E] hover:text-[#C8A97E] transition-colors"
+              aria-label="Xem đánh giá tiếp theo"
+              className="w-9 h-9 sm:w-10 sm:h-10 border border-white/20 flex items-center justify-center text-white/50 hover:border-[#C8A97E] hover:text-[#C8A97E] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A97E]"
             >
               <ChevronRight size={18} />
             </button>
@@ -106,22 +117,24 @@ export function TestimonialsSection() {
         </div>
 
         {/* Mini testimonials grid */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-12 sm:mt-16 lg:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {testimonials.map((t, i) => (
             <motion.button
               key={t.id}
+              type="button"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 + i * 0.1 }}
               onClick={() => setCurrent(i)}
-              className={`p-4 text-left border transition-all duration-300 ${
+              aria-label={`Xem chi tiết đánh giá từ ${t.name}`}
+              className={`p-3 sm:p-4 text-left border transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A97E] ${
                 current === i
-                  ? "border-[#C8A97E] bg-white/8"
+                  ? "border-[#C8A97E] bg-white/[0.08]"
                   : "border-white/10 hover:border-white/25"
               }`}
             >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-full overflow-hidden shrink-0">
+              <div className="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden shrink-0">
                   <Image
                     src={t.avatar}
                     alt={t.name}

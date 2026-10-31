@@ -34,9 +34,9 @@ const footerLinks = [
 export function Footer() {
   return (
     <footer className="bg-[#2F2F2F] text-white/80">
-      <div className="container-elite py-16">
+      <div className="container-elite py-12 sm:py-16">
         {/* Top */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-8 sm:mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="mb-6">
@@ -52,14 +52,18 @@ export function Footer() {
               <Link
                 href={contactInfo.facebook}
                 target="_blank"
-                className="w-9 h-9 flex items-center justify-center border border-white/20 hover:border-[#C8A97E] hover:text-[#C8A97E] transition-colors"
+                rel="noopener noreferrer"
+                aria-label="Theo dõi Elite Interior Studio trên Facebook"
+                className="w-9 h-9 flex items-center justify-center border border-white/20 hover:border-[#C8A97E] hover:text-[#C8A97E] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A97E]"
               >
                 <FacebookIcon size={16} />
               </Link>
               <Link
                 href={contactInfo.zalo}
                 target="_blank"
-                className="w-9 h-9 flex items-center justify-center border border-white/20 hover:border-[#C8A97E] hover:text-[#C8A97E] transition-colors text-xs font-bold"
+                rel="noopener noreferrer"
+                aria-label="Liên hệ Zalo với Elite Interior Studio"
+                className="w-9 h-9 flex items-center justify-center border border-white/20 hover:border-[#C8A97E] hover:text-[#C8A97E] transition-colors text-xs font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A97E]"
               >
                 Z
               </Link>
@@ -110,7 +114,7 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="border-t border-white/10 pt-6 sm:pt-8 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-center md:text-left">
           <p className="text-xs text-white/40 tracking-normal">
             © {new Date().getFullYear()} Elite Interior Studio. Tất cả quyền được bảo lưu.
           </p>

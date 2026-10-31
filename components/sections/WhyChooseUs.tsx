@@ -38,7 +38,7 @@ export function WhyChooseUs() {
   return (
     <section id="why-us" className="section-padding bg-[#F8F5F0]">
       <div className="container-elite">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
           {/* Left image */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -47,7 +47,7 @@ export function WhyChooseUs() {
             transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="relative"
           >
-            <div className="relative aspect-[3/4] overflow-hidden">
+            <div className="relative aspect-[4/3] sm:aspect-[3/4] overflow-hidden">
               <Image
                 src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=900&q=85"
                 alt="Elite Interior Studio showroom"
@@ -62,10 +62,10 @@ export function WhyChooseUs() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="absolute -bottom-6 -right-6 bg-[#C8A97E] p-6 text-white"
+              className="absolute bottom-0 right-0 sm:-bottom-6 sm:-right-6 bg-[#C8A97E] p-4 sm:p-6 text-white shadow-xl"
             >
-              <div className="text-4xl font-light mb-1">12+</div>
-              <div className="text-xs tracking-normal font-medium">Năm kinh nghiệm</div>
+              <div className="text-2xl sm:text-4xl font-light mb-1">12+</div>
+              <div className="text-[11px] sm:text-xs tracking-normal font-medium">Năm kinh nghiệm</div>
             </motion.div>
           </motion.div>
 
@@ -78,7 +78,7 @@ export function WhyChooseUs() {
             />
 
             {/* Reasons grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 mt-8 sm:mt-10 mb-8 sm:mb-12">
               {reasons.map((r, i) => (
                 <motion.div
                   key={r.title}
@@ -90,8 +90,8 @@ export function WhyChooseUs() {
                   <div className="w-10 h-10 flex items-center justify-center bg-[#C8A97E]/10 text-[#C8A97E] mb-3 group-hover:bg-[#C8A97E] group-hover:text-white transition-colors duration-300">
                     {r.icon}
                   </div>
-                  <h4 className="font-semibold text-[#2F2F2F] mb-1.5 tracking-normal">{r.title}</h4>
-                  <p className="text-sm text-[#2F2F2F]/60 leading-relaxed tracking-normal">{r.desc}</p>
+                  <h4 className="font-semibold text-sm sm:text-base text-[#2F2F2F] mb-1.5 tracking-normal">{r.title}</h4>
+                  <p className="text-xs sm:text-sm text-[#2F2F2F]/60 leading-relaxed tracking-normal">{r.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -99,7 +99,7 @@ export function WhyChooseUs() {
         </div>
 
         {/* Stats row */}
-        <div className="mt-20 pt-16 border-t border-[#E8E0D5] grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="mt-12 sm:mt-16 lg:mt-20 pt-10 sm:pt-12 lg:pt-16 border-t border-[#E8E0D5] grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.id}

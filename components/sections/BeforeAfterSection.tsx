@@ -28,18 +28,36 @@ function BeforeAfterSlider({ before, after, title, location }: {
     updateSlider(e.clientX);
   };
   const handleTouchMove = (e: React.TouchEvent) => {
-    updateSlider(e.touches[0].clientX);
+    if (e.touches[0]) updateSlider(e.touches[0].clientX);
+  };
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") {
+      setSliderPos((p) => Math.max(p - 5, 2));
+    } else if (e.key === "ArrowRight") {
+      setSliderPos((p) => Math.min(p + 5, 98));
+    }
   };
 
   return (
     <div className="space-y-4">
       <div
         ref={containerRef}
-        className="relative aspect-[16/10] overflow-hidden cursor-ew-resize select-none"
+        role="slider"
+        tabIndex={0}
+        aria-valuenow={Math.round(sliderPos)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label={`Thanh trượt so sánh trước và sau: ${title}`}
+        onKeyDown={handleKeyDown}
+        className="relative aspect-[16/10] overflow-hidden cursor-ew-resize select-none touch-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C8A97E]"
+        onClick={(e) => updateSlider(e.clientX)}
         onMouseDown={() => { isDragging.current = true; }}
         onMouseUp={() => { isDragging.current = false; }}
         onMouseLeave={() => { isDragging.current = false; }}
         onMouseMove={handleMouseMove}
+        onTouchStart={(e) => {
+          if (e.touches[0]) updateSlider(e.touches[0].clientX);
+        }}
         onTouchMove={handleTouchMove}
       >
         {/* After (full) */}
@@ -51,7 +69,7 @@ function BeforeAfterSlider({ before, after, title, location }: {
             className="object-cover pointer-events-none"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
-          <div className="absolute top-4 right-4 bg-[#C8A97E] px-3 py-1 text-xs font-medium tracking-normal text-white">
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-[#C8A97E] px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-medium tracking-normal text-white shadow-sm">
             Sau
           </div>
         </div>
@@ -70,7 +88,7 @@ function BeforeAfterSlider({ before, after, title, location }: {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
-          <div className="absolute top-4 left-4 bg-[#2F2F2F]/80 px-3 py-1 text-xs font-medium tracking-normal text-white">
+          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-[#2F2F2F]/80 px-2.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs font-medium tracking-normal text-white shadow-sm">
             Trước
           </div>
         </div>
@@ -114,7 +132,7 @@ export function BeforeAfterSection() {
 
         <div
           ref={ref}
-          className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10"
+          className="mt-10 sm:mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10"
         >
           {beforeAfters.map((item, i) => (
             <motion.div
